@@ -1,0 +1,53 @@
+/* Layout */
+form,
+form div,
+fieldset,
+fieldset div {
+    display: flex;
+}
+form,
+#textContainer,
+#translateContainer,
+#wordToEmoContainer,
+#translatedContainer {
+    flex-direction: column;
+}
+form {
+    align-items: flex-start;
+}
+.wordToEmo,
+#translateContainer {
+    flex-direction: row;
+}
+#filterContainer {
+    flex-wrap: wrap;
+}
+#emojiWrapper {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+.emoContainer {
+    font-size: 2em;
+    margin: .125em;
+}
+textarea {
+    width: 400px;
+    height: 160px;
+}
+.hidden {
+    display: none;
+}
+.visible {
+    display: flex;
+}
+
+/* Borders */
+fieldset {
+    border: none;
+}
+
+/* Hover */
+#emojiWrapper:hover {
+    cursor: pointer;
+}
