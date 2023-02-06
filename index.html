@@ -10,17 +10,23 @@
 </head>
 <body>
   <form>
-    <div id="translateContainer">
-      <fieldset id="textContainer">
-        <label for="textToTranslate">Text to Translate:</label>
-        <textarea type="text" id="textTrans" name="textToTranslate"></textarea>
-      </fieldset>
-      <fieldset id="translatedContainer">
-        <label for="translatedOutput">Emoji Translation:</label>
-        <textarea type="text" id="emoTrans" name="translatedOutput"></textarea>
-      </fieldset>
+    <div id="translations">
+      <div id="translateContainer">
+        <fieldset id="textContainer">
+          <label for="textToTranslate">Text to Translate:</label>
+          <textarea type="text" id="textTrans" name="textToTranslate"></textarea>
+        </fieldset>
+        <fieldset id="translatedContainer">
+          <label for="translatedOutput">Emoji Translation:</label>
+          <textarea type="text" id="emoTrans" name="translatedOutput"></textarea>
+        </fieldset>
+      </div> 
+      <button id="autoBtn">Auto Translate</button>
+      <button id="createManBtn">Create Manual Translation</button>
+      
     </div>  
-    <fieldset id="wordToEmoContainer">
+    <fieldset id="wordToEmoContainer" class="hidden">
+      <button class="hidden" id="hideManBtn">Hide Manual Translation Controls</button>
       <div class="wordToEmo">
         <label for="word1">Word:</label>
         <input type="text" id="word1" name="word1">
@@ -41,11 +47,12 @@
         =
         <label for="emo3">Emoji:</label>
         <input type="text" id="emo3" name="emo3">
-      </div> 
+      </div>
+      <button class="hidden" id="translateBtn">Manually Translate</button> 
     </fieldset>
-    <button id="translateBtn">Translate</button>
+    
   </form>
-  <form id="filterContainer">
+  <form class="hidden"id="filterContainer">
     <fieldset>
       <legend>Filter Emoji</legend>
     <div>
