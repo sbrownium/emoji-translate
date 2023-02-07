@@ -6,20 +6,16 @@ const form = document.querySelector('form');
 const inputText = document.querySelector('#textTrans');
 const outputText = document.querySelector('#emoTrans');
 const translateBtn = document.querySelector('#translateBtn');
-// const word1 = document.querySelector('#word1');
-// const emo1 = document.querySelector('#emo1');
 const filterField = document.querySelector('#filterContainer');
 const resetBtn = document.querySelector('#resetBtn');
 const autoBtn = document.querySelector('#autoBtn');
 const outputContainer = document.querySelector('#wordToEmoContainer');
 const createManBtn = document.querySelector('#createManBtn')
 const hideManBtn = document.querySelector('#hideManBtn');
-// const word1 = document.querySelector('#word1');
-// const emo1 = document.querySelector('#emo1');
-// const word2 = document.querySelector('#word2');
-// const emo2 = document.querySelector('#emo2');
-// const word3 = document.querySelector('#word3');
-// const emo3 = document.querySelector('#emo3');
+let inputArray = []
+let outputArray = []
+let emojiObj = {}
+
 
 // Event Listeners
 emoWrap.addEventListener('click', selectEmoji);
@@ -27,7 +23,6 @@ window.addEventListener('load', generateEmoji);
 translateBtn.addEventListener('click', manTrans);
 filterField.addEventListener('change', filter);
 resetBtn.addEventListener('click', clearFilters)
-// inputText.addEventListener('change', target)
 autoBtn.addEventListener('click', autoTrans)
 createManBtn.addEventListener('click', showManual)
 hideManBtn.addEventListener('click', showManual)
@@ -64,8 +59,7 @@ function showManual(e){
         if (box.checked) {
             box.checked = false
         }  
-    }) 
-    
+    })   
 }
 
 function generateEmoji () {
@@ -84,8 +78,7 @@ function generateEmoji () {
             if (!newEmo.title.startsWith('E')){
                 emoWrap.appendChild(newEmo);
             }
-            }
-        )
+        })
     })
 }
 
@@ -98,7 +91,6 @@ function selectEmoji (e) {
     const emo2 = document.querySelector('#emo2');
     const word3 = document.querySelector('#word3');
     const emo3 = document.querySelector('#emo3');
-    // const emoField = document.querySelector('#emo1');
     if ((word1.value && !word2.value && !word3.value) || (!emo1.value)){
         emo1.value = emo.innerText
     } 
@@ -108,7 +100,6 @@ function selectEmoji (e) {
     if ((word1.value && emo1.value && word2.value && emo2.value && word3.value) || (emo1.value && emo2.value && word3.value && !emo3.value)){
         emo3.value = emo.innerText
     }
-    // emoField.value = emo.innerText;
 }
 
 function manTrans (e) {
@@ -127,14 +118,15 @@ function filter(e) {
     checkBox.forEach(b => {
         if (b.checked) {
             checkedBox.push(b.id)
-          }})
-          reset();
+        }
+    })
+    reset();
     if (checkedBox.length) {
         checkBox.forEach(box => {
             if (box.checked) {
                 emo.forEach(i => {
                      if (box.id === i.dataset.group) {
-                     i.classList.add('visible');   
+                        i.classList.add('visible');   
                     }
                     else if (!i.classList.contains('visible')) {
                         i.classList.add('hidden');
@@ -168,9 +160,6 @@ function clearFilters (e) {
     }) 
 }
 
-let inputArray = []
-let outputArray = []
-let emojiObj = {}
 function autoTrans (e) {
     const space = ' ';
     const emo = document.querySelectorAll('.emoContainer');
@@ -178,21 +167,19 @@ function autoTrans (e) {
     outputArray = [];
     inputArray = inputText.value.split(space);
     emo.forEach(i => {
-        // i.title.toLowerCase().split(space).forEach(key => {
         i.title.split(space).forEach(key => {
             emojiObj[key] = i.textContent
-         })
-     })
-     inputArray.forEach(word => {
-        // if (emojiObj[word.toLowerCase()]) {
+        })
+    })
+    inputArray.forEach(word => {
         if (emojiObj[word]) {
             outputArray.push(emojiObj[word])
         }
         else {
             outputArray.push(word)
         }
-     })
-     outputText.value = outputArray.join(space)
+    })
+    outputText.value = outputArray.join(space)
  }
 
 
